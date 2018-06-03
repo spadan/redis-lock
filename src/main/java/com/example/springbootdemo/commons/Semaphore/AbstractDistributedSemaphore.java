@@ -1,17 +1,9 @@
 package com.example.springbootdemo.commons.Semaphore;
 
-import com.google.common.collect.Lists;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.data.redis.core.script.RedisScript;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractDistributedSemaphore implements DistributedSemaphore, InitializingBean {
@@ -59,7 +51,7 @@ public abstract class AbstractDistributedSemaphore implements DistributedSemapho
                 return true;
             }
             try {
-                // 100毫秒后重试
+                // 10毫秒后重试
                 TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
